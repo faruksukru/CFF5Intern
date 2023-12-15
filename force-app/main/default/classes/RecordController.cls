@@ -11,6 +11,7 @@ public with sharing class RecordController {
             newRecord.Phone__c=applicant.Phone__c;
             newRecord.LinkedIn__c=applicant.LinkedIn__c;
             newRecord.Trailhead__c=applicant.Trailhead__c;
+            newRecord.Views_and_Suggestions__c=applicant.Views_and_Suggestions__c;
             // Insert the new record
             insert newRecord;
 
