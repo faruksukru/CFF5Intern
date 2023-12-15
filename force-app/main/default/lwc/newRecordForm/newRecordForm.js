@@ -1,7 +1,7 @@
 // newRecordForm.js
 import { LightningElement, track } from 'lwc';
 import createRecord from '@salesforce/apex/RecordController.createRecord';
-
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class NewRecordForm extends LightningElement {
   //  @track recordName = '';
     @track applicantObject ={};
@@ -31,13 +31,25 @@ console.log(newRecordId);
                 if (fileUploadComponent) {
                     fileUploadComponent.recordId = newRecordId;
                 }
-
+                const toastEvent = new ShowToastEvent({
+                    title: 'Thank you for your submission to our Intern Program !',
+                    message: 'We have received your submission succesfully. Please Upload your Resume!',
+                    variant: 'success',
+                });
+                this.dispatchEvent(toastEvent);
                 // Optionally, you can reset the form or perform other actions after record creation
                 this.resetForm();
             })
             .catch(error => {
                 // Handle error, show error message, etc.
                 console.error(error);
+                const toastEvent = new ShowToastEvent({
+                    title: 'Dublicate Record! We already have your record in our Database',
+                    message: {error},
+                    variant: 'error',
+                });
+                this.dispatchEvent(toastEvent);
+                this.resetForm();
             });
     }
 

@@ -6,15 +6,16 @@ sans-serif; color:blue; text-align: left ">Please fill the form and click submit
         <br><br>
         <!-- Other form fields for the new record -->
 
-        <lightning-input data-fieldname="First_Name__c" label="First Name" type="Text" value={applicantObject.First_Name__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Last_Name__c" label="Last Name" type="Text" value={applicantObject.Last_Name__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Email__c" label="Email" type="Email" value={applicantObject.Email__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Phone__c" label="Phone" type="Text" value={applicantObject.Phone__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Trailhead__c" label="Trailhead" type="url" value={applicantObject.Trailhead__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="LinkedIn__c" label="LinkedIn" type="url" value={applicantObject.LinkedIn__c} onchange={handleInput}></lightning-input>
+        <lightning-input data-fieldname="First_Name__c" label="First Name" type="Text" required value={applicantObject.First_Name__c} onchange={handleInput}></lightning-input>
+        <lightning-input data-fieldname="Last_Name__c" label="Last Name" type="Text" required value={applicantObject.Last_Name__c} onchange={handleInput}></lightning-input>
+        <lightning-input data-fieldname="Email__c" label="Email" type="Email" required value={applicantObject.Email__c} onchange={handleInput}></lightning-input>
+        <lightning-input data-fieldname="Phone__c" label="Phone" type="Text" required value={applicantObject.Phone__c} onchange={handleInput}></lightning-input>
+        <lightning-input data-fieldname="Trailhead__c" label="Trailhead Link" type="url" required value={applicantObject.Trailhead__c} onchange={handleInput}></lightning-input>
+        <lightning-input data-fieldname="LinkedIn__c" label="LinkedIn Link" type="url" required value={applicantObject.LinkedIn__c} onchange={handleInput}></lightning-input>
         
+        <br>
  <!-- Save button to create the new record -->
- <lightning-button label="Submit" onclick={handleSave}></lightning-button><br>
+ <lightning-button label="Submit" onclick={handleSave}></lightning-button><hr>
         
         <!-- File upload component -->
         <c-file-upload-component record-id={newRecordId} onuploadfinished={handleFileUploadFinished}></c-file-upload-component>
