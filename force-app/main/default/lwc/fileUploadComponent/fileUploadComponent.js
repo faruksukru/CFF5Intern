@@ -8,7 +8,7 @@ export default class FileUploadComponent extends LightningElement {
     handleUploadFinished(event) {
         // Get the uploaded files
         const uploadedFiles = event.detail.files;
-
+        console.log(this.recorId);
         // Process the uploaded files, e.g., show a success message
         const toastEvent = new ShowToastEvent({
             title: 'Success!',

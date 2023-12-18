@@ -12,6 +12,8 @@ public with sharing class RecordController {
             newRecord.LinkedIn__c=applicant.LinkedIn__c;
             newRecord.Trailhead__c=applicant.Trailhead__c;
             newRecord.Views_and_Suggestions__c=applicant.Views_and_Suggestions__c;
+            newRecord.Application_Date__c=system.today();
+            newRecord.Application_Status__c='Applied';
             // Insert the new record
             insert newRecord;
 
