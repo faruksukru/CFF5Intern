@@ -11,12 +11,12 @@ acceptedFormats = ['.pdf', '.png', '.jpg', '.jpeg', '.docx'];
         this.upload=true;
 const toastEvent = new ShowToastEvent({
 title: 'Thank you for your submission to our Intern Program !',
-message: 'We have received your submission succesfully. Please Upload your Resume!',
+message: 'We have received your submission succesfully. Please Upload your Resume and Cover Letter!',
 variant: 'success',
 });
 this.dispatchEvent(toastEvent);
 // Optionally, you can reset the form or perform other actions after record creation
-this.resetForm();
+//this.resetForm();
     }
 
     handleError(event) {
@@ -46,17 +46,33 @@ resetForm() {
 
    
 
-    handleUploadFinished(event) {
+    handleUploadResume(event) {
         const uploadedFiles = event.detail.files;
         console.log(this.recorId);
         // Process the uploaded files, e.g., show a success message
         const toastEvent = new ShowToastEvent({
         title: 'Success!',
-        message: `${uploadedFiles.length} files uploaded successfully.`,
+       // message: `${uploadedFiles.length} files uploaded successfully.`,
+        message: 'Your Resume uploaded successfully. Please Do Not Forget To Upload Your Cover Letter',
         variant: 'success',
         });
         this.dispatchEvent(toastEvent);
-        this.upload=false;
+        //this.upload=false;
         }
+
+        handleUploadCover(event) {
+            const uploadedFiles = event.detail.files;
+            console.log(this.recorId);
+            // Process the uploaded files, e.g., show a success message
+            const toastEvent = new ShowToastEvent({
+            title: 'Success!',
+           // message: `${uploadedFiles.length} files uploaded successfully.`,
+           message: 'Your Cover Letter uploaded successfully.',
+            variant: 'success',
+            });
+            this.dispatchEvent(toastEvent);
+            this.upload=false;
+            this.resetForm();
+            }
 
 }

@@ -14,7 +14,7 @@
             <lightning-input-field field-name="LinkedIn__c"> </lightning-input-field>
             <lightning-input-field field-name="Position_Applied__c"> </lightning-input-field>
             <lightning-input-field field-name="Salesforce_Certifications__c"> </lightning-input-field>
-            <lightning-input-field field-name="Views_and_Suggestions__c"> </lightning-input-field>
+            <lightning-input-field field-name="Views_and_Suggestions__c" > </lightning-input-field>
                         
             <lightning-button
                 type="submit"
@@ -30,13 +30,25 @@
     <template if:true={upload}>
         <hr>
         <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
-sans-serif; color:blue; text-align: left ">Please upload your resume</h6>
+sans-serif; color:blue; text-align: left ">Please upload your Resume</h6>
           <lightning-file-upload
                 label="Attach File"
                 name="fileUploader"
                 accept={acceptedFormats}
                 record-id={recordid}
-                onuploadfinished={handleUploadFinished}
+                onuploadfinished={handleUploadResume}
+                multiple
+            ></lightning-file-upload>
+            <br>
+            <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
+sans-serif; color:blue; text-align: left ">Please upload your Cover Letter</h6>
+          <lightning-file-upload
+                label="Attach File"
+                name="fileUploader"
+                accept={acceptedFormats}
+                record-id={recordid}
+                onuploadfinished={handleUploadCover}
+                multiple
             ></lightning-file-upload>
     </template>
 </div>
