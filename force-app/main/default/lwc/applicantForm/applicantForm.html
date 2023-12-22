@@ -1,8 +1,8 @@
 <template>
-    <lightning-card title="Intern Application Form" icon-name="action:add_contact">
+    <lightning-card title="Internship Application Form" icon-name="action:add_contact">
         <div class="slds-var-m-around_large">
             <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
-    sans-serif; color:blue; text-align: left ">Please fill the form and click submit button first. Then, upload your resume</h6>
+    sans-serif; color:blue; text-align: left ">Please fill the form and click submit button first. Then, upload your Resume and Cover Letter</h6>
             <br>
         <lightning-record-edit-form object-api-name="Applicant__c" onsuccess={handleSuccess} onerror={handleError}>
             <lightning-messages></lightning-messages>
@@ -53,5 +53,35 @@ sans-serif; color:blue; text-align: left ">Please upload your Cover Letter</h6>
     </template>
 </div>
 </lightning-card>
+
+
+   <!-- modal start -->      
+   <template if:true={isShowModal}>
+<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_medium">
+    <div class="slds-modal__container">
+    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+    </svg>
+    <span class="slds-assistive-text">Cancel and close</span>
+    </button>
+    <div class="slds-modal__header">
+    <h1 id="modal-heading-01" style="font-size:x-large ; font-weight:bold; font-family:Arial, Helvetica, 
+    sans-serif; color:blue;"  class="slds-modal__title slds-hyphenate">Successful Internship Program Application: You Have Applied Successfully!</h1>
+    </div>
+    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+    <p style="font-size:medium ; font-family:Arial, Helvetica, 
+    sans-serif;" > Congratulations on applying for the ChangeForce Foundation internship! Your commitment to making a difference shines through. 
+        Best of luck in the selection process—we look forward to the possibility of working together! </p><br>
+    <p style="font-size:medium ; font-weight:bold; font-family:Arial, Helvetica, 
+    sans-serif;"> You will receive an email shortly informing you about the acceptance/boarding process.</p>
+</div>
+    <div class="slds-modal__footer">
+    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={hideModalBox}>Go Back</button>
     
+    </div>
+    </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
 </template>

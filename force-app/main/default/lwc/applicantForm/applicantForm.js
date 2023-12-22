@@ -1,17 +1,18 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class ApplicantForm extends LightningElement {
     recordid=null;
     upload=false;
-   
+    @track isShowModal = false;
 acceptedFormats = ['.pdf', '.png', '.jpg', '.jpeg', '.docx'];
+
     handleSuccess(event) {
         console.log(event.detail.id);
         this.recordid = event.detail.id;
         this.upload=true;
 const toastEvent = new ShowToastEvent({
-title: 'Thank you for your submission to our Intern Program !',
-message: 'We have received your submission succesfully. Please Upload your Resume and Cover Letter!',
+title: 'Succes Submission  !',
+message: 'Please Upload your Resume and Cover Letter!',
 variant: 'success',
 });
 this.dispatchEvent(toastEvent);
@@ -44,7 +45,10 @@ resetForm() {
     
     }
 
-   
+    hideModalBox() {  
+        this.isShowModal = false;
+    }
+    
 
     handleUploadResume(event) {
         const uploadedFiles = event.detail.files;
@@ -73,6 +77,7 @@ resetForm() {
             this.dispatchEvent(toastEvent);
             this.upload=false;
             this.resetForm();
+            this.isShowModal = true;
             }
 
 }
