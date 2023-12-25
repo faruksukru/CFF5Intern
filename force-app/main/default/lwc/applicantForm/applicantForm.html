@@ -15,18 +15,9 @@
             <lightning-input-field field-name="Position_Applied__c"> </lightning-input-field>
             <lightning-input-field field-name="Salesforce_Certifications__c"> </lightning-input-field>
             <lightning-input-field field-name="Views_and_Suggestions__c" > </lightning-input-field>
-                        
-            <lightning-button
-                type="submit"
-                name="submit"
-                label="Submit"
-                
-            >
-            </lightning-button>
+            <lightning-button type="submit" name="submit" label="Submit"></lightning-button>
         </lightning-record-edit-form>
-
-    
-
+ 
     <template if:true={upload}>
         <hr>
         <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
@@ -34,10 +25,10 @@ sans-serif; color:blue; text-align: left ">Please upload your Resume</h6>
           <lightning-file-upload
                 label="Attach File"
                 name="fileUploader"
+                disabled={isFileUploadDisabled}
                 accept={acceptedFormats}
                 record-id={recordid}
                 onuploadfinished={handleUploadResume}
-                multiple
             ></lightning-file-upload>
             <br>
             <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
@@ -48,13 +39,10 @@ sans-serif; color:blue; text-align: left ">Please upload your Cover Letter</h6>
                 accept={acceptedFormats}
                 record-id={recordid}
                 onuploadfinished={handleUploadCover}
-                multiple
             ></lightning-file-upload>
     </template>
 </div>
 </lightning-card>
-
-
    <!-- modal start -->      
    <template if:true={isShowModal}>
 <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_medium">
@@ -75,11 +63,10 @@ sans-serif; color:blue; text-align: left ">Please upload your Cover Letter</h6>
         Best of luck in the selection process—we look forward to the possibility of working together! </p><br>
     <p style="font-size:medium ; font-weight:bold; font-family:Arial, Helvetica, 
     sans-serif;"> You will receive an email shortly informing you about the acceptance/boarding process.</p>
-</div>
+   </div>
     <div class="slds-modal__footer">
-    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={hideModalBox}>Go Back</button>
-    
-    </div>
+    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={hideModalBox}>ChangeForce Foundation Web Site</button>
+      </div>
     </div>
     </section>
     <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>

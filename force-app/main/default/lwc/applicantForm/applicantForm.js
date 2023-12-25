@@ -4,7 +4,8 @@ export default class ApplicantForm extends LightningElement {
     recordid=null;
     upload=false;
     @track isShowModal = false;
-acceptedFormats = ['.pdf', '.png', '.jpg', '.jpeg', '.docx'];
+    @track isFileUploadDisabled = false;
+    acceptedFormats = ['.pdf', '.png', '.jpg', '.jpeg', '.docx'];
 
     handleSuccess(event) {
         console.log(event.detail.id);
@@ -16,21 +17,16 @@ message: 'Please Upload your Resume and Cover Letter!',
 variant: 'success',
 });
 this.dispatchEvent(toastEvent);
-// Optionally, you can reset the form or perform other actions after record creation
-//this.resetForm();
     }
 
     handleError(event) {
-       
 const toastEvent = new ShowToastEvent({
 title: 'Dublicate Record!',
 message: 'We already have your record in our Database',
 variant: 'error',
 });
 this.dispatchEvent(toastEvent);
-// Optionally, you can reset the form or perform other actions after record creation
-//this.resetForm();
-    }   
+}   
 
 // Reset form fields to their initial state
 resetForm() {
@@ -41,15 +37,18 @@ resetForm() {
         inputFields.forEach(field => {
             field.reset();
         });
-    }
-    
-    }
+    }}
 
     hideModalBox() {  
         this.isShowModal = false;
+        const websiteUrl = 'https://www.changeforcefoundation.org/'; 
+        // Option 1: Open in a new tab/window
+        // window.open(websiteUrl, '_blank');
+
+        // Option 2: Navigate in the same tab/window
+         window.location.href = websiteUrl;
     }
     
-
     handleUploadResume(event) {
         const uploadedFiles = event.detail.files;
         console.log(this.recorId);
@@ -61,7 +60,7 @@ resetForm() {
         variant: 'success',
         });
         this.dispatchEvent(toastEvent);
-        //this.upload=false;
+        this.isFileUploadDisabled = true;
         }
 
         handleUploadCover(event) {
