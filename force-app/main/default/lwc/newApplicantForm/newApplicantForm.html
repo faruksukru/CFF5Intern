@@ -1,35 +1,35 @@
 <template>
-    <lightning-card title="Intern Application Form" icon-name="action:add_contact">
-    <div class="slds-var-m-around_large">
-        <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
+<lightning-card title="Intern Application Form" icon-name="action:add_contact">
+<div class="slds-var-m-around_large">
+<h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
 sans-serif; color:blue; text-align: left ">Please fill the form and click submit button first. Then, upload your resume</h6>
-        <br>
-        <!-- Other form fields for the new record -->
+<br>
+<!-- Other form fields for the new record. Here used data-fieldname -->
 
-        <lightning-input data-fieldname="First_Name__c" label="First Name" type="Text" required value={applicantObject.First_Name__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Last_Name__c"  label="Last Name" type="Text" required value={applicantObject.Last_Name__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Email__c"   label="Email" type="Email" required value={applicantObject.Email__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Phone__c"  label="Phone" type="Text" required value={applicantObject.Phone__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="Trailhead__c" placeholder="Enter your Trailhead Link" label="Trailhead Link" type="url" required value={applicantObject.Trailhead__c} onchange={handleInput}></lightning-input>
-        <lightning-input data-fieldname="LinkedIn__c" placeholder="Enter your Linkedin Link" label="LinkedIn Link" type="url" required value={applicantObject.LinkedIn__c} onchange={handleInput}></lightning-input>
-        <lightning-input  data-fieldname="Views_and_Suggestions__c" placeholder="Write Your Views and Suggestions" label="Views and Suggestions" type="text" value={applicantObject.Views_and_Suggestions__c} onchange={handleInput}></lightning-input>
-        <br>
- <!-- Save button to create the new record -->
- <lightning-button label="Submit" onclick={handleSave}></lightning-button>
-     <template if:true={upload}>
-        <hr>
-        <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
+<lightning-input data-fieldname="First_Name__c" label="First Name" type="Text" required value={applicantObject.First_Name__c} onchange={handleInput}></lightning-input>
+<lightning-input data-fieldname="Last_Name__c"  label="Last Name" type="Text" required value={applicantObject.Last_Name__c} onchange={handleInput}></lightning-input>
+<lightning-input data-fieldname="Email__c"   label="Email" type="Email" required value={applicantObject.Email__c} onchange={handleInput}></lightning-input>
+<lightning-input data-fieldname="Phone__c"  label="Phone" type="Text" required value={applicantObject.Phone__c} onchange={handleInput}></lightning-input>
+<lightning-input data-fieldname="Trailhead__c" placeholder="Enter your Trailhead Link" label="Trailhead Link" type="url" required value={applicantObject.Trailhead__c} onchange={handleInput}></lightning-input>
+<lightning-input data-fieldname="LinkedIn__c" placeholder="Enter your Linkedin Link" label="LinkedIn Link" type="url" required value={applicantObject.LinkedIn__c} onchange={handleInput}></lightning-input>
+<lightning-input  data-fieldname="Views_and_Suggestions__c" placeholder="Write Your Views and Suggestions" label="Views and Suggestions" type="text" value={applicantObject.Views_and_Suggestions__c} onchange={handleInput}></lightning-input>
+<br>
+<!-- Save button to create the new record -->
+<lightning-button label="Submit" onclick={handleSave}></lightning-button>
+<!-- when record created this upload part showed up -->
+<template if:true={upload}>
+<hr>
+<h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
 sans-serif; color:blue; text-align: left ">Please upload your resume</h6>
-          <lightning-file-upload
-                label="Attach File"
-                name="fileUploader"
-                accept={acceptedFormats}
-                record-id={recordid}
-                onuploadfinished={handleUploadFinished}
-            ></lightning-file-upload>
-    </template>
-   </div>
+<lightning-file-upload
+label="Attach File"
+name="fileUploader"
+accept={acceptedFormats}
+record-id={recordid}
+onuploadfinished={handleUploadFinished}
+></lightning-file-upload>
+</template>
+</div>
 </lightning-card>
 
-    
 </template>

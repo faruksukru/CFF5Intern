@@ -1,20 +1,21 @@
 import { LightningElement, track } from 'lwc';
+//call apex to create applicant and get recordId
 import createRecord from '@salesforce/apex/RecordController.createRecord';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class NewApplicantForm extends LightningElement {
 
-@track applicantObject ={};
+@track applicantObject ={};//list in which all fields values added and this send to apex to insert in database.
 @track newRecordId;
 upload=false;
 recordid;
 acceptedFormats = ['.pdf', '.png', '.jpg', '.jpeg', '.docx'];
-
+//handle each field add add them in a list. below part can be copy/paste
 handleInput(event) {
 var targetElement = event.target; //Input tags dataset is assigned to a variable
 this.applicantObject[targetElement.dataset.fieldname] = targetElement.value; 
 }
 
-// Perform record creation using Apex
+// Perform record creation using Apex when click button, show toast message and rest form.
 handleSave() {
 createRecord({ applicant: this.applicantObject })
 .then(newRecordId => {
@@ -48,7 +49,7 @@ this.applicantObject ={};
 this.newRecordId = null;
 }
 
-// Get the uploaded files
+// Get the uploaded files and show toast message
 handleUploadFinished(event) {
 const uploadedFiles = event.detail.files;
 console.log(this.recorId);

@@ -1,9 +1,12 @@
+<!-- sldsValidatorIgnore -->
 <template>
     <lightning-card title="Internship Application Form" icon-name="action:add_contact">
         <div class="slds-var-m-around_large">
             <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
     sans-serif; color:blue; text-align: left ">Please fill the form and click submit button first. Then, upload your Resume and Cover Letter</h6>
             <br>
+            <!-- Custom object fields and a button to save. Below we can define
+             onsuccess and onerror event and write js for them --> 
         <lightning-record-edit-form object-api-name="Applicant__c" onsuccess={handleSuccess} onerror={handleError}>
             <lightning-messages></lightning-messages>
             <lightning-input-field field-name="First_Name__c"> </lightning-input-field>
@@ -17,7 +20,7 @@
             <lightning-input-field field-name="Views_and_Suggestions__c" > </lightning-input-field>
             <lightning-button type="submit" name="submit" label="Submit"></lightning-button>
         </lightning-record-edit-form>
- 
+ <!-- two upload tag with getting recordid. if give recordid, it uploads to related record, otherwise uploads to file --> 
     <template if:true={upload}>
         <hr>
         <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
@@ -43,7 +46,7 @@ sans-serif; color:blue; text-align: left ">Please upload your Cover Letter</h6>
     </template>
 </div>
 </lightning-card>
-   <!-- modal start -->      
+   <!-- modal start. to show last message and define button to do an action -->      
    <template if:true={isShowModal}>
 <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_medium">
     <div class="slds-modal__container">
@@ -55,7 +58,7 @@ sans-serif; color:blue; text-align: left ">Please upload your Cover Letter</h6>
     </button>
     <div class="slds-modal__header">
     <h1 id="modal-heading-01" style="font-size:x-large ; font-weight:bold; font-family:Arial, Helvetica, 
-    sans-serif; color:blue;"  class="slds-modal__title slds-hyphenate">Successful Internship Program Application: You Have Applied Successfully!</h1>
+    sans-serif; color:blue;"  class="slds-modal__title slds-hyphenate">Congratulations on applying for the ChangeForce Foundation Internship Program!</h1>
     </div>
     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
     <p style="font-size:medium ; font-family:Arial, Helvetica, 
