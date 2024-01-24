@@ -9,6 +9,7 @@ export default class NewApplicantForm extends LightningElement {
 upload=false;
 recordid;
 acceptedFormats = ['.pdf', '.png', '.jpg', '.jpeg', '.docx'];
+
 //handle each field add add them in a list. below part can be copy/paste
 handleInput(event) {
 var targetElement = event.target; //Input tags dataset is assigned to a variable
