@@ -23,8 +23,11 @@ onuploadfinished={handleUploadFinished}
 ></lightning-file-upload>
 </template>
 </div>
+<!-- modal start. Here we show both two modal. One is for if we have same item in cart, the item is not added to cart, it shows a modal
+second is for new item, to show item has been added to cart and item info. Here we use conditional rendering. 
+newItem or inCart.Those values comes from js, we also get aria-labelledby from js. -->      
 <template if:true={isShowModal}>
-<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_small">
+<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby={label}  class="slds-modal slds-fade-in-open slds-modal_small">
 <div class="slds-modal__container">
 <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
 <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
@@ -35,19 +38,25 @@ onuploadfinished={handleUploadFinished}
 <div class="slds-modal__header">
 <h1 if:true={Modal1} id="modal-heading-01" style="font-size:x-large ; font-weight:bold; font-family:Arial, Helvetica, 
 sans-serif; color:blue;"  class="slds-modal__title slds-hyphenate">We have already had your TrailHead Screen Shot!</h1>
+<h1 if:true={Modal2} id="modal-heading-02" style="font-size:x-large ; font-weight:bold; font-family:Arial, Helvetica, 
+sans-serif; color:blue;"  class="slds-modal__title slds-hyphenate">Your Screen Shot uploaded successfully!</h1>
 </div>
 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 <p if:true={Modal1} style="font-size:medium ; font-weight:bold; font-family:Arial, Helvetica, 
 sans-serif;"> If you want to Delete Previous one and upload a new one, Please Hit Delete Button and Upload new Screen Shot by Using Your Email.</p>
+<p if:true={Modal2} style="font-size:medium ; font-weight:bold; font-family:Arial, Helvetica, 
+sans-serif;"> We will review it carefully and Inform you for the next step</p>
 </div>
 <div class="slds-modal__footer">
 <button if:true={Modal1} class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={exitModalBox}>Go CFF Website</button>
+<button if:true={Modal2} class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={exitModalBox}>Go CFF Website</button>
 <button if:true={Modal1} class="slds-button slds-button_brand" aria-label="Cancel and close" onclick={deleteModalBox}>Delete</button>
 </div>
 </div>
 </section>
 <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
 </template>
+<!-- modal end --> 
 </lightning-card>
 
 </template>

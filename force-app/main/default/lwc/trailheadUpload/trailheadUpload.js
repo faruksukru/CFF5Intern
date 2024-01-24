@@ -12,6 +12,7 @@ isExist=false;
 isShowModal=false;
 Modal1=false;
 Modal2=false;
+@track label=null;//used in modal in HTML to show which heading is used in modal
 acceptedFormats = ['.pdf', '.png', '.jpg', '.jpeg'];//restrict upload formats
 
 handleInput(event) {
@@ -54,8 +55,11 @@ message: 'We Have already had your TrailHead Screen Shot!',
 variant: 'error',
 });
 this.dispatchEvent(toastEvent);*/
-this.isShowModal=true;
+this.label='modal-heading-01';
 this.Modal1=true;
+this.Modal2=false;
+this.isShowModal=true;
+
 // Optionally, you can reset the form or perform other actions after record creation
 this.resetForm();  
 });
@@ -72,11 +76,15 @@ handleUploadFinished(event) {
 const toastEvent = new ShowToastEvent({
 title: 'Success!',
 // message: `${uploadedFiles.length} files uploaded successfully.`,
-message: 'Your file uploaded successfully.',
+message: 'Your file uploaded successfully!',
 variant: 'success',
 });
 this.dispatchEvent(toastEvent);
 this.upload=false;
+this.label='modal-heading-02';
+this.Modal2=true;
+this.Modal1=false;
+this.isShowModal=true;
 }
 
 deleteModalBox() { 
