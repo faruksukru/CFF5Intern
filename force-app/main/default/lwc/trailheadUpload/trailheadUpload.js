@@ -30,7 +30,7 @@ console.log('we have email');
 this.upload=true;
 const toastEvent = new ShowToastEvent({
 title: 'We have found your email succesfully!',
-message: 'Please Upload your trailhead screen shoot!',
+message: 'Please Upload your trailhead screen shot!',
 variant: 'success',
 });
 this.dispatchEvent(toastEvent);
