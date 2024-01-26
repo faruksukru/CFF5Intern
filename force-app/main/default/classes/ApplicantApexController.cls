@@ -26,12 +26,18 @@ Return vars ;
 
 @AuraEnabled(cacheable=false)
 public static void deleteRecord(string recordEmail){
-system.debug(recordEmail);
 Trailhead__c trailheadRecord =  [SELECT Id, Applicant__c FROM Trailhead__c WHERE Email__c=:recordEmail ];
 Delete trailheadRecord ;
 Applicant__c applicant= [SELECT Id, Trailhead_Upload__c FROM Applicant__c WHERE id=: trailheadRecord.Applicant__c];
 applicant.Trailhead_Upload__c=false;
 Update applicant;
+}
+
+@AuraEnabled(cacheable=false)
+public static void updateUpload(string recordEmail){
+Trailhead__c trailheadRecord =  [SELECT Id, Applicant__c, isFileUploaded__c FROM Trailhead__c WHERE Email__c=:recordEmail ];
+trailheadRecord.isFileUploaded__c=true;
+Update trailheadRecord;
 }
 
 }

@@ -1,6 +1,7 @@
 import { LightningElement, track } from 'lwc';
 import getApplicant from '@salesforce/apex/ApplicantApexController.isApplicantExist';
 import deleteRecord from '@salesforce/apex/ApplicantApexController.deleteRecord';
+import updateUpload from '@salesforce/apex/ApplicantApexController.updateUpload';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class TrailheadUpload extends LightningElement {
 
@@ -85,6 +86,30 @@ this.label='modal-heading-02';
 this.Modal2=true;
 this.Modal1=false;
 this.isShowModal=true;
+
+updateUpload({ recordEmail: this.applicantemail })
+    .then(result => {
+    /*const toastEvent = new ShowToastEvent({
+    title: 'We have deleted your previous Screen Shot successfully!',
+    message: 'You can Upload new Screen Shoot again by using your Email',
+    variant: 'success',
+    });
+    this.dispatchEvent(toastEvent);
+    // Optionally, you can reset the form or perform other actions after record creation
+    this.resetForm();*/
+    })
+    .catch(error => {
+    // Handle error, show error message, etc.
+    console.error('erroris'+error);
+   /* const toastEvent = new ShowToastEvent({
+    title: 'We have an error while deleting your Screen Shot. Please Contact with CFF',
+    message: {error},
+    variant: 'error',
+    });
+    this.dispatchEvent(toastEvent);
+    this.resetForm();*/
+    });    
+
 }
 
 deleteModalBox() { 
