@@ -1,8 +1,12 @@
-public with sharing class ApplicantApexController {
-
-@AuraEnabled(cacheable=false)
+public without sharing class ApplicantApexController {
+/* gets email from JS and make query if the we have record in applicant related with this email.
+if yes, then it looks if trailhead uplod field is checked, if checked it gives message, if unchecked
+it create a new record in trailhead object to get screen shoot. if we dont ant record related with email, 
+the sytem gives another message says we couldnt find email try a new one.  */
+@AuraEnabled
 public static List<String> isApplicantExist(string eml){
 List<String> vars=new List<String>();
+system.debug('email: '+eml);
 List<Applicant__c> applc= [SELECT Id, First_Name__c, Last_Name__c, Email__c, Trailhead_Upload__c FROM Applicant__c WHERE Email__c=: eml];
 if(applc.size()>0){
 if(applc[0].Trailhead_Upload__c){
@@ -23,8 +27,8 @@ system.debug('Test2 '+vars);
 }
 Return vars ;
 }
-
-@AuraEnabled(cacheable=false)
+//get email to find related trailhead record and delete it. it also find applicant object to make upload check box false
+@AuraEnabled
 public static void deleteRecord(string recordEmail){
 Trailhead__c trailheadRecord =  [SELECT Id, Applicant__c FROM Trailhead__c WHERE Email__c=:recordEmail ];
 Delete trailheadRecord ;
@@ -32,12 +36,11 @@ Applicant__c applicant= [SELECT Id, Trailhead_Upload__c FROM Applicant__c WHERE 
 applicant.Trailhead_Upload__c=false;
 Update applicant;
 }
-
-@AuraEnabled(cacheable=false)
+//get email and when the screen shoot uploaded suceesfully it update trailhead file upload checkbox
+@AuraEnabled
 public static void updateUpload(string recordEmail){
 Trailhead__c trailheadRecord =  [SELECT Id, Applicant__c, isFileUploaded__c FROM Trailhead__c WHERE Email__c=:recordEmail ];
 trailheadRecord.isFileUploaded__c=true;
 Update trailheadRecord;
 }
-
 }

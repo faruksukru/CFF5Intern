@@ -9,7 +9,7 @@ sans-serif; color:blue; text-align: left ">Please enter your submission Email be
 <br>
 <!-- Save button to create the new record -->
 <lightning-button label="Submit" onclick={handleSave}></lightning-button>
-<!-- when record created this upload part showed up -->
+<!-- when record created in trailhead object this upload part showed up -->
 <template if:true={upload}>
 <hr>
 <h6 style="font-size:medium; font-weight:bold; font-family:Arial, Helvetica, 
@@ -23,9 +23,9 @@ onuploadfinished={handleUploadFinished}
 ></lightning-file-upload>
 </template>
 </div>
-<!-- modal start. Here we show both two modal. One is for if we have same item in cart, the item is not added to cart, it shows a modal
-second is for new item, to show item has been added to cart and item info. Here we use conditional rendering. 
-newItem or inCart.Those values comes from js, we also get aria-labelledby from js. -->      
+<!-- modal start. Here we show both two modal, we use Modal1 and Modal2 boolean variable, in js we have change their value to True based on the condition.
+One condition is for if we have TrailHead Screen Shot, it gives a message that says we already have a screen shoot says if you wan to delete and old one,
+so we have delete button. Second is shows sucess message for uploded image.Those values comes from js, we also get aria-labelledby from js. -->      
 <template if:true={isShowModal}>
 <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby={label}  class="slds-modal slds-fade-in-open slds-modal_small">
 <div class="slds-modal__container">
